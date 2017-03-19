@@ -3,6 +3,9 @@
  * Classe AutoLoad
  * @author Temístocles Arêa
  */
+
+define( 'DS', DIRECTORY_SEPARATOR );
+
 class AutoLoad 
 {
     
@@ -24,9 +27,15 @@ class AutoLoad
         
         foreach ( $this->arquivos as $arquivo ) {
             
+            $arquivo = str_replace( "\\", DS, $arquivo );
+            
             if( file_exists( $arquivo ) ) {
                 
-                require_once str_replace( "\\", "/", $arquivo );
+                require_once $arquivo;
+                
+            } else {
+             
+                print_r('Arquivo não encontrado!');
                 
             }
             
